@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://diq0sbmqpdxqx"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_22cmx"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(541, 231)
+script = ExtResource("1_22cmx")
