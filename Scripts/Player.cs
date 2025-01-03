@@ -9,9 +9,10 @@ public partial class Player : CharacterBody2D
     [Export] public int MaxJumps = 2;
     [Export] public float DashForce = 30000f; 
     [Export] public NodePath SpritePath;
-    [Export] public int MaxDashes = 2; 
+    [Export] public int MaxDashes = 2;
+
     //[Export] public NodePath AnimationPlayerPath;
-   
+    private DateTime _dashDuration; 
     private Sprite2D _sprite;
     private AnimationPlayer _animationPlayer;
     private float _gravity;
@@ -73,7 +74,7 @@ public partial class Player : CharacterBody2D
 
     private void HandleDash(ref Vector2 velocity, double delta)
     {
-        if (Input.IsActionJustPressed("dash") && _dashesRemaining > 0)
+        if (Input.IsActionPressed("dash") && _dashesRemaining > 0)
         {
            
             var dashDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down").Normalized();

@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b88obj1g2w3h7"]
+[gd_scene load_steps=6 format=3 uid="uid://b88obj1g2w3h7"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_mp13t"]
 [ext_resource type="Texture2D" uid="uid://b13e8dbundvct" path="res://PlayerImages/apple.png" id="2_54835"]
 [ext_resource type="Texture2D" uid="uid://be3p5nfbwujci" path="res://Images/testPlatform.png" id="3_jurb6"]
-[ext_resource type="Script" path="res://Scripts/Test.cs" id="4_7bcui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mnyp"]
 size = Vector2(54, 65)
@@ -11,15 +10,14 @@ size = Vector2(54, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjqwy"]
 size = Vector2(48, 21.018)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tccls"]
-
 [node name="MainScene" type="Node2D"]
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(212, 239)
 script = ExtResource("1_mp13t")
-DashForce = 5000.0
+DashForce = 500.0
 SpritePath = NodePath("Sprite2D")
+MaxDashes = 1000
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -1)
@@ -45,6 +43,32 @@ texture = ExtResource("3_jurb6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_vjqwy")
 
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1600, 378)
+scale = Vector2(8, 7.898)
+
+[node name="TestPlatform" type="Sprite2D" parent="StaticBody2D3"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-2, 2.53229)
+texture = ExtResource("3_jurb6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_vjqwy")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(2400, 378)
+scale = Vector2(8, 7.898)
+
+[node name="TestPlatform" type="Sprite2D" parent="StaticBody2D4"]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(-2, 2.53229)
+texture = ExtResource("3_jurb6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("RectangleShape2D_vjqwy")
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(999, 378)
 scale = Vector2(8, 7.898)
@@ -57,11 +81,3 @@ texture = ExtResource("3_jurb6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource("RectangleShape2D_vjqwy")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-mass = 0.1
-script = ExtResource("4_7bcui")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(306, 234)
-shape = SubResource("RectangleShape2D_tccls")
