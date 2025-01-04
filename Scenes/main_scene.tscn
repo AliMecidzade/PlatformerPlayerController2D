@@ -30,6 +30,9 @@ texture = ExtResource("2_54835")
 position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_0mnyp")
 
+[node name="Timer" type="Timer" parent="Player"]
+wait_time = 0.5
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(293, 378)
 scale = Vector2(8, 7.898)
