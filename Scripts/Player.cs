@@ -10,9 +10,10 @@ public partial class Player : CharacterBody2D
 	[Export] public float DashForce = 30000f; 
 	[Export] public NodePath SpritePath;
 	[Export] public int MaxDashes = 2;
-	[Export] public Timer DashDurationTimer; 
+	[Export] public Timer DashDurationTimer;
 	//[Export] public NodePath AnimationPlayerPath;
-	
+
+	private bool _isDashing = true;
 	private Sprite2D _sprite;
 	private AnimationPlayer _animationPlayer;
 	private float _gravity;
@@ -59,7 +60,7 @@ public partial class Player : CharacterBody2D
 
 	private void InitializeVariables()
 	{ 
-        DashDurationTimer = GetNode<Timer>("Timer");
+       
         _jumpsRemaining = MaxJumps;
 		_dashesRemaining = MaxDashes;
 	  
@@ -71,31 +72,41 @@ public partial class Player : CharacterBody2D
 		{
 			velocity.Y += _gravity * (float)delta;
 		}
-	}
-
-	private void HandleDash(ref Vector2 velocity, double delta)
-	{
-		if (Input.IsActionPressed("dash") && _dashesRemaining > 0)
-		{
-		   DashDurationTimer.Start();
-            var dashDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down").Normalized();
-			if (dashDirection.Length() > 0 && DashDurationTimer.TimeLeft != 0)
-			{
-				GD.Print("Clicked");
-				velocity += dashDirection * DashForce;
-				_dashesRemaining--;
-			}
-		}
-
-		if (IsOnFloor())
-		{
-			_dashesRemaining = MaxDashes;
-		}
-	}
+    }
 
 
+    private void OnDashTimerTimeout()
+    {
+        _isDashing = false;
+    }
 
-	private void HandleMovement(ref Vector2 velocity, double delta)
+
+    private void HandleDash(ref Vector2 velocity, double delta)
+    {
+
+        var dashDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down").Normalized();
+        if (Input.IsActionJustPressed("dash") && _dashesRemaining > 0 && !_isDashing)
+        {
+            _isDashing = true;
+            DashDurationTimer.Start();
+        }
+
+        if (_isDashing)
+        {
+            velocity += dashDirection * DashForce * (float)delta;
+        }
+
+        if (IsOnFloor())
+        {
+            _dashesRemaining = MaxDashes;
+        }
+    }
+
+    // REFACTOR THIS SHIT
+	// fuck this 
+
+
+    private void HandleMovement(ref Vector2 velocity, double delta)
 	{
 		var inputDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 

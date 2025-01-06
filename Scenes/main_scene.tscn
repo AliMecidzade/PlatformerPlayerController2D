@@ -5,19 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://be3p5nfbwujci" path="res://Images/testPlatform.png" id="3_jurb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0mnyp"]
-size = Vector2(54, 65)
+size = Vector2(54, 64.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjqwy"]
 size = Vector2(48, 21.018)
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("DashDurationTimer")]
 position = Vector2(212, 239)
 script = ExtResource("1_mp13t")
+JumpVelocity = -500.0
 DashForce = 500.0
 SpritePath = NodePath("Sprite2D")
-MaxDashes = 1000
+DashDurationTimer = NodePath("Timer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -1)
@@ -27,15 +28,16 @@ position = Vector2(0, -1)
 texture = ExtResource("2_54835")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-1, -1)
+position = Vector2(-1, -1.25)
 shape = SubResource("RectangleShape2D_0mnyp")
 
 [node name="Timer" type="Timer" parent="Player"]
-wait_time = 0.5
+wait_time = 0.1
+autostart = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(293, 378)
-scale = Vector2(8, 7.898)
+scale = Vector2(21.08, 7.898)
 
 [node name="TestPlatform" type="Sprite2D" parent="StaticBody2D"]
 texture_filter = 1
@@ -84,3 +86,5 @@ texture = ExtResource("3_jurb6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource("RectangleShape2D_vjqwy")
+
+[connection signal="timeout" from="Player/Timer" to="Player" method="OnDashTimerTimeOut"]
