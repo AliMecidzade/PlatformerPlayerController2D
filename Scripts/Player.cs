@@ -7,13 +7,13 @@ public partial class Player : CharacterBody2D
 	[Export] public float Speed = 500.0f;
 	[Export] public float JumpVelocity = -400.0f;
 	[Export] public int MaxJumps = 2;
-	[Export] public float DashForce = 30000f; 
+	[Export] public float DashSpeed = 30000f; 
 	[Export] public NodePath SpritePath;
-	[Export] public int MaxDashes = 2;
 	[Export] public Timer DashDurationTimer;
 	//[Export] public NodePath AnimationPlayerPath;
 
-	private bool _isDashing = true;
+	private bool _canDash = true;
+    private bool _isDashing = false;
 	private Sprite2D _sprite;
 	private AnimationPlayer _animationPlayer;
 	private float _gravity;
@@ -62,7 +62,7 @@ public partial class Player : CharacterBody2D
 	{ 
        
         _jumpsRemaining = MaxJumps;
-		_dashesRemaining = MaxDashes;
+		
 	  
 	}
 
@@ -75,7 +75,7 @@ public partial class Player : CharacterBody2D
     }
 
 
-    private void OnDashTimerTimeout()
+    private void OnDashTimerTimeOut()
     {
         _isDashing = false;
     }
@@ -85,21 +85,19 @@ public partial class Player : CharacterBody2D
     {
 
         var dashDirection = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down").Normalized();
-        if (Input.IsActionJustPressed("dash") && _dashesRemaining > 0 && !_isDashing)
+        if (Input.IsActionJustPressed("dash") && _canDash)
         {
             _isDashing = true;
             DashDurationTimer.Start();
+
         }
 
         if (_isDashing)
         {
-            velocity += dashDirection * DashForce * (float)delta;
+            velocity.X += dashDirection.X * DashSpeed * (float)delta;
         }
 
-        if (IsOnFloor())
-        {
-            _dashesRemaining = MaxDashes;
-        }
+        
     }
 
     // REFACTOR THIS SHIT
