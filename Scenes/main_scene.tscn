@@ -12,12 +12,13 @@ size = Vector2(48, 21.018)
 
 [node name="MainScene" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("DashDurationTimer")]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("DashDurationTimer", "DashAgainTimer")]
 position = Vector2(212, 239)
 script = ExtResource("1_mp13t")
 JumpVelocity = -500.0
 SpritePath = NodePath("Sprite2D")
-DashDurationTimer = NodePath("Timer")
+DashDurationTimer = NodePath("DashDurationTimer")
+DashAgainTimer = NodePath("DashAgainTimer")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -1)
@@ -30,9 +31,12 @@ texture = ExtResource("2_54835")
 position = Vector2(-1, -1.25)
 shape = SubResource("RectangleShape2D_0mnyp")
 
-[node name="Timer" type="Timer" parent="Player"]
+[node name="DashDurationTimer" type="Timer" parent="Player"]
 wait_time = 0.2
 autostart = true
+
+[node name="DashAgainTimer" type="Timer" parent="Player"]
+wait_time = 0.5
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(293, 378)
@@ -86,4 +90,5 @@ texture = ExtResource("3_jurb6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 shape = SubResource("RectangleShape2D_vjqwy")
 
-[connection signal="timeout" from="Player/Timer" to="Player" method="OnDashTimerTimeOut"]
+[connection signal="timeout" from="Player/DashDurationTimer" to="Player" method="OnDashTimerTimeOut"]
+[connection signal="timeout" from="Player/DashAgainTimer" to="Player" method="OnDashAgainTimerTimeout"]

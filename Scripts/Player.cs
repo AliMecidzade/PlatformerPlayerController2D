@@ -7,9 +7,10 @@ public partial class Player : CharacterBody2D
 	[Export] public float Speed = 500.0f;
 	[Export] public float JumpVelocity = -400.0f;
 	[Export] public int MaxJumps = 2;
-	[Export] public float DashSpeed = 30000f; 
+	[Export] public float DashSpeed = 50000f; 
 	[Export] public NodePath SpritePath;
 	[Export] public Timer DashDurationTimer;
+	[Export] public Timer DashAgainTimer; 
 	//[Export] public NodePath AnimationPlayerPath;
 
 	private bool _canDash = true;
@@ -80,6 +81,10 @@ public partial class Player : CharacterBody2D
         _isDashing = false;
     }
 
+	private void OnDashAgainTimerTimeout()
+	{
+        _canDash = true;
+    }
 
     private void HandleDash(ref Vector2 velocity, double delta)
     {
@@ -88,8 +93,9 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionJustPressed("dash") && _canDash)
         {
             _isDashing = true;
+            _canDash = false;
             DashDurationTimer.Start();
-
+			DashAgainTimer.Start();
         }
 
         if (_isDashing)
@@ -136,7 +142,7 @@ public partial class Player : CharacterBody2D
 
 	// Add Crouching 
 	// Refactor the code 
-	// Learn Impulsing in Godot 
+	
 	// i hate my life 
 
 	//private void UpdateAnimations(Vector2 velocity)
