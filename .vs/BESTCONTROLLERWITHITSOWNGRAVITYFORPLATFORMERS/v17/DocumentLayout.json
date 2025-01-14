@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\alime\\Documents\\GitHub\\PlatformerPlayerController2D\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7932060F-4940-444F-89AB-C8B9B925019F}|BestControllerWithItsOwnGravityForPlatformers.csproj|c:\\users\\alime\\documents\\github\\platformerplayercontroller2d\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7932060F-4940-444F-89AB-C8B9B925019F}|BestControllerWithItsOwnGravityForPlatformers.csproj|solutionrelative:scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7932060F-4940-444F-89AB-C8B9B925019F}|BestControllerWithItsOwnGravityForPlatformers.csproj|c:\\users\\alime\\documents\\github\\platformerplayercontroller2d\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7932060F-4940-444F-89AB-C8B9B925019F}|BestControllerWithItsOwnGravityForPlatformers.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -23,12 +27,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Users\\alime\\Documents\\GitHub\\PlatformerPlayerController2D\\Scripts\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Scripts\\PlayerMovement.cs",
+              "ToolTip": "C:\\Users\\alime\\Documents\\GitHub\\PlatformerPlayerController2D\\Scripts\\PlayerMovement.cs",
+              "RelativeToolTip": "Scripts\\PlayerMovement.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAIwF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T18:56:17.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\alime\\Documents\\GitHub\\PlatformerPlayerController2D\\Scripts\\Player.cs",
               "RelativeDocumentMoniker": "Scripts\\Player.cs",
               "ToolTip": "C:\\Users\\alime\\Documents\\GitHub\\PlatformerPlayerController2D\\Scripts\\Player.cs",
               "RelativeToolTip": "Scripts\\Player.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-01T20:28:31.086Z",
               "EditorCaption": ""

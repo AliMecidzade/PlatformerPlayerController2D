@@ -1,7 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://diq0sbmqpdxqx"]
+[gd_scene load_steps=5 format=3 uid="uid://diq0sbmqpdxqx"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_22cmx"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.cs" id="2_dwweg"]
+[ext_resource type="Texture2D" uid="uid://b13e8dbundvct" path="res://PlayerImages/apple.png" id="3_x77tw"]
 
-[node name="Player" type="CharacterBody2D"]
-position = Vector2(541, 231)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x570h"]
+size = Vector2(43.1501, 56.5)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_22cmx")
+
+[node name="PlayerMovement" type="Node" parent="Player" node_paths=PackedStringArray("DashDurationTimer", "DashAgainTimer")]
+script = ExtResource("2_dwweg")
+Speed = 900.0
+JumpVelocity = -550.0
+SpritePath = NodePath("../Sprite2D")
+DashDurationTimer = NodePath("../DashDurationTimer")
+DashAgainTimer = NodePath("../DashAgainTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture_filter = 1
+texture = ExtResource("3_x77tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1.80623, 3.75)
+scale = Vector2(1.03514, 0.979698)
+shape = SubResource("RectangleShape2D_x570h")
+
+[node name="DashDurationTimer" type="Timer" parent="Player"]
+wait_time = 0.3
+
+[node name="DashAgainTimer" type="Timer" parent="Player"]
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
